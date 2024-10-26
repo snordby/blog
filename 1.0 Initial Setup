@@ -1,0 +1,16 @@
+Throughout this process I will, naturally, seek inspiration form various sources. Sometimes actual software projects and repos, but I suspect inspiration will also present itself in many other forms.
+My first source will be npmaile's blog post [How to get into software](https://github.com/npmaile/blog/blob/main/posts/2.%20How%20to%20get%20into%20software.md).
+
+Some of Nate's recommendations I will follow verbatim. Some, I will modify to suit my own needs. 
+I believe a healthy balance between *monkey see, monkey do* and uhm... *monkey see, monkey experiment*. Sure, sometimes just do the thing, as told, and pay attention. But I need to put my own ideas into this endeavor and learn through failure.
+Otherwise, what's the point?
+
+Anyhow, here's where I'm at:
+- I have been running Debian on a mini-PC for a couple of weeks. That install will be wiped, so the computer can be repurposed as a homelab.
+- I'm backing up all data and Windows configuration on my main computer. Which is turning out to be a pain in the butt.
+- Once that's done, I will be installing Arch Linux on that computer.
+- I am already going through [Learn Linux TV's Bash Scripting tutorial](https://youtu.be/2733cRPudvI?si=9q1dN5ho2ijCFg2f). I'd like to be a bit more familiar with the Linux shell, so I should finish that tutorial.
+- Then I will move on to [Automate the Boring Stuff](https://automatetheboringstuff.com/).
+
+I am not totally sure about how to structure these posts. I need to decide, if the above points should be documented as separate posts or as updates on this one.
+We'll see...
