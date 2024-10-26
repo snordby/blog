@@ -1,0 +1,11 @@
+My Windows install has been succesfully been kicked off my main computer. I think I have secure backups of all my files & software and their various customizations. I'll find out later. Onwards.
+
+Right now I have no Windows system to create a bootable USB drive. Meaning no Rufus. Meaning I am officially out of my depth. 
+Sure, I can find and have tried following various guides for formatting a USB drive and creating a bootable drive from an image using the terminal on my Debian install, but honestly, I'm reminded why people don't bother doing things the 'proper' way.
+I just want to create a bootable thumb drive. I am obviously already aware, that this is a relatively simple action, but I did have to spend half an hour trying to get the drive to format correctly and adding the ISO correctly. 
+
+To be sure, this is due to my own lack of knowledge, but sometimes I just want to go ahead and do the thing I'm actually trying to do, instead of trying to figure out which part of a command I misunderstood. 
+
+In any case, I eventually learned that the Arch Wiki had exactly the instructions I needed. I have a blinking cursor on my screen. 
+
+Root awaits.
