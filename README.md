@@ -1,6 +1,6 @@
 # Building a path
-###Documenting my progress acquiring developer skills.
----
+Documenting my progress acquiring developer skills.
+
 ## Brick, Meet Window
 Starting October 26th I will be sharing how and why I am taking steps towards becoming a developer.
 Fundamentally, I have no idea what I'm doing.
