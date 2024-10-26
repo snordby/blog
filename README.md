@@ -1,9 +1,7 @@
-# Building a path
-Documenting my progress acquiring developer skills.
+# Brick, Meet Window
+> Documenting my progress acquiring developer skills.
 
-## Brick, Meet Window
-Starting October 26th I will be sharing how and why I am taking steps towards becoming a developer.
-Fundamentally, I have no idea what I'm doing.
+Starting October 26th 2024 I will be sharing how and why I am taking steps towards becoming a developer. Fundamentally, I have no idea what I'm doing.
 
 Currently I possess the following:
 - An unused degree in journalism
