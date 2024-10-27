@@ -27,8 +27,6 @@ EXT4
 In my case, I need to use FAT32, so I use the command:
 > sudo mkfs.vfat /dev/sda
 
-sudo elevates my privilege to allow using mkfs, mkfs performs the formatting and /dev/sda points to the appropriate device.
-
 Then, I'm ready to add the ISO image to the drive.
 cd to the folder where you downloaded the image to. Then use these two commands:
 > sudo cp debian-12.7.0-amd64-netinst.iso /dev/sda
