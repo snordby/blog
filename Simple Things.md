@@ -20,12 +20,12 @@ exFAT: ``` sudo mkfs.exfat /dev/[device_name] ```
 
 EXT4 ``` sudo mkfs.ext4 /dev/[device_name] ```
 
-In my case, I need to use FAT32, so I use the command: ``` sudo mkfs.vfat /dev/sdX ```
+In my case, I need to use FAT32, so I use the command: ``` sudo mkfs.vfat /dev/sda ```
 
 Then, I'm ready to add the ISO image to the drive.
 cd to the folder where you downloaded the image to. Then use these two commands:
 ```
-sudo cp debian-12.7.0-amd64-netinst.iso /dev/sdX
+sudo cp debian-12.7.0-amd64-netinst.iso /dev/sda
 sync
 ```
 
