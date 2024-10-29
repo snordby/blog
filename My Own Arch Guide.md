@@ -25,13 +25,21 @@ Hit **12** on startup. Select the USB device to start.
 ### Important things to do first
 Open the [official installation guide](https://wiki.archlinux.org/title/Installation_guide) and follow along.
 
-Find your keyboard layout with the command: ``` localectl list-keymaps ```
+Find your keyboard layout with the command: 
 
-Then load the proper layout: ``` loadkeys [layout_name] ```
+```
+localectl list-keymaps 
+```
+
+Then load the proper layout: 
+
+``` 
+loadkeys [layout_name]
+```
 
 Make a note of the chosen keymap for later use.
 
-Connect to Wifi with *iwctl*
+Connect to Wifi with *iwctl*:
 ```
 iwctl
 station wlan0 scan
@@ -39,16 +47,28 @@ station wlan0 connect [SSID]
 exit
 ```
 
-Test for connectivity with ``` ping [website] ```
+Test for connectivity with *ping*:
 
-Update the system clock with ``` timedatectl ```
+``` 
+ping [website]
+```
+
+Update the system clock:
+
+```
+timedatectl 
+```
 
 ## 1. Disk partitioning
 IMPORTANT NOTE: Leave space for your future Windows install. About half the total volume should remain unused when creating the GPT.
 
-Remember to double-check block devices often: ``` lsblk ```
+Remember to double-check block devices often with ``` lsblk ```
 
-Use *fdisk* to create a partition table: ``` fdisk /dev/nameofdisk ```
+Use *fdisk* to create a partition table: 
+
+```
+fdisk /dev/nameofdisk 
+```
 
 You want three (2) partitions: /boot, swap and a large partition for logical volumes.
 
@@ -68,18 +88,30 @@ Don't forget to also mount the boot partition when returning to the regular Inst
 
 ## 2. Package installation
 Check if the mirrorlist is ordered appropriately
-``` vim /etc/pacman.d/mirrorlist ```
+
+```
+vim /etc/pacman.d/mirrorlist 
+```
 
 Run pacstrap to install the base system
-``` pacstrap -K /mnt base linux linux-firmware ```
+
+```
+pacstrap -K /mnt base linux linux-firmware 
+```
 
 For simplicity, you will only be installing the stable Linux kernel on this setup.
 
 At this point you should definitely install some additional packages.
-``` pacman -Syu amd-ucode networkmanager lvm2 man-db, man-pages and texinfo vim ```
+
+```
+pacman -Syu amd-ucode networkmanager lvm2 man-db man-pages texinfo vim 
+```
 
 Please remember to enable networkmanager.
-``` systemctl enable NetworkManager.service ```
+
+```
+systemctl enable NetworkManager.service 
+```
 
 With base, networking, lvm and text editing software installed, you can go ahead with configuration. The minimal install has been achieved, and additional packages can be installed later.
 
@@ -89,51 +121,75 @@ We're getting there :)
 This section has several EXTREMELY IMPORTANT steps. 
 
 ### IMPORTANT: Generate fstab using ``` -L ``` for "labels".
-``` genfstab -L /mnt >> /mnt/etc/fstab ```
+```
+genfstab -L /mnt >> /mnt/etc/fstab 
+```
+
 Check the resulting /mnt/etc/fstab file, and edit it in case of errors. Refer to the install guide if in doubt
 
 ### Change root into the installed system
 
-``` arch-chroot /mnt ```
+```
+arch-chroot /mnt 
+```
 
 You're now working from the actual install.
 
 ### Timezone, keymap and hostname
 You'll set the the time zone to Copenhagen.
 
-``` ln -sf /usr/share/zoneinfo/Europe/Copenhagen /etc/localtime ```
+```
+ln -sf /usr/share/zoneinfo/Europe/Copenhagen /etc/localtime 
+```
 
 ... And generate ``` /etc/adjtime ``` ...
 
-``` hwclock --systohc ```
+```
+hwclock --systohc 
+```
 
 Note: Check the install guide if any issues arise with the system clock.
 
 Edit ``` /etc/locale.gen ``` and uncomment ``` en_DK.UTF-8 UTF-8 ``` and other needed UTF-8 locales. Generate the locales by running: 
 
-``` locale-gen ```
+```
+locale-gen 
+```
 
 Set your console keyboard layout
 
-``` vim /etc/vconsole.conf ``` > ``` KEYMAP=thekeymapyounotedearlier ```
+``` 
+vim /etc/vconsole.conf
+```
+Append: ```KEYMAP=thekeymapyounotedearlier ```
 
 Set the hostname
-``` /etc/hostname ``` > ``` host ```
+```
+vim /etc/hostname 
+```
+Append: ``` host ```
 
 ### IMPORTANT: Configuring mkinitcpio
 You'll be using the default option found here: [LVM on LUKS guide](https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS)
 
-``` vim /etc/mkinitcpio.conf ``` 
+``` 
+vim /etc/mkinitcpio.conf
+``` 
 
 Find the HOOKS section and update it like so:
 
 ``` HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block encrypt lvm2 filesystems fsck) ```
 
 Then ...
-``` mkinitcpio -P ```
+``` 
+mkinitcpio -P
+```
 
 ### Root password
-Set your root password with the ``` passwd ``` command.
+Set your root password with 
+``` 
+passwd
+```
 
 Be sure to also remember this one.
 
@@ -143,7 +199,14 @@ For this install you will be using [systemd-boot](https://wiki.archlinux.org/tit
 Follow the instructions in the link.
 
 ### Reboot and verify
-Exit chroot with ``` exit ```, then ``` reboot ```.
+Exit chroot with 
+```
+exit 
+```
+then 
+``` 
+reboot
+```
 
 When you've succesfully rebooted the system, you're probably itching to get started with a desktop environment and some other general purpose programs.
 
