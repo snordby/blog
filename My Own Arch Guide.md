@@ -23,6 +23,8 @@ The IdeaPad 5 Pro boot menu can be accessed with **F12**.
 Hit **12** on startup. Select the USB device to start.
 
 ### Important things to do first
+Open the [official installation guide](https://wiki.archlinux.org/title/Installation_guide) and follow along.
+
 Find your keyboard layout with the command: ``` localectl list-keymaps ```
 
 Then load the proper layout: ``` loadkeys [layout_name] ```
@@ -52,4 +54,31 @@ You will be using one (1) volume group containing three (3) logical volumes. It 
 
 ![gpt drawio](https://github.com/user-attachments/assets/0380ec96-1456-4037-86e8-b5e3afca5760)
 
+The boot partition should be of the EFI type, while the storage partition should be EXT4.
 
+### LVM encryption
+Follow the [LVM on LUKS guide](https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS) to set up the encrypted partition.
+This guide also includes proper formatting methods for the logical volumes.
+
+Be sure to remember this password! Are you absolutely sure you have it? Okay. Go on then.
+
+Don't forget to also mount the boot partition when returning to the regular Installation guide.
+
+## Package installation
+Check if the mirrorlist is ordered appropriately
+``` vim /etc/pacman.d/mirrorlist ```
+
+Run pacstrap to install the base system
+``` pacstrap -K /mnt base linux linux-firmware ```
+
+For simplicity, you will only be installing the stable Linux kernel at this time.
+
+At this point you should definitely install some additional packages.
+``` pacman -Syu amd-ucode networkmanager lvm2 man-db, man-pages and texinfo vim ```
+
+## System configuration
+We're getting there :)
+
+### Configuring mkinitcpio
+You'll be using the default option found here: [LVM on LUKS guide](https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS)
+``` HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block encrypt lvm2 filesystems fsck) ```
