@@ -29,6 +29,8 @@ Find your keyboard layout with the command: ``` localectl list-keymaps ```
 
 Then load the proper layout: ``` loadkeys [layout_name] ```
 
+Make a note of the chosen keymap for later use.
+
 Connect to Wifi with *iwctl*
 ```
 iwctl
@@ -41,7 +43,7 @@ Test for connectivity with ``` ping [website] ```
 
 Update the system clock with ``` timedatectl ```
 
-## Disk partitioning
+## 1. Disk partitioning
 IMPORTANT NOTE: Leave space for your future Windows install. About half the total volume should remain unused when creating the GPT.
 
 Remember to double-check block devices often: ``` lsblk ```
@@ -64,21 +66,87 @@ Be sure to remember this password! Are you absolutely sure you have it? Okay. Go
 
 Don't forget to also mount the boot partition when returning to the regular Installation guide.
 
-## Package installation
+## 2. Package installation
 Check if the mirrorlist is ordered appropriately
 ``` vim /etc/pacman.d/mirrorlist ```
 
 Run pacstrap to install the base system
 ``` pacstrap -K /mnt base linux linux-firmware ```
 
-For simplicity, you will only be installing the stable Linux kernel at this time.
+For simplicity, you will only be installing the stable Linux kernel on this setup.
 
 At this point you should definitely install some additional packages.
 ``` pacman -Syu amd-ucode networkmanager lvm2 man-db, man-pages and texinfo vim ```
 
-## System configuration
+Please remember to enable networkmanager.
+``` systemctl enable NetworkManager.service ```
+
+With base, networking, lvm and text editing software installed, you can go ahead with configuration. The minimal install has been achieved, and additional packages can be installed later.
+
+## 3. System configuration & finalization
 We're getting there :)
 
-### Configuring mkinitcpio
+This section has several EXTREMELY IMPORTANT steps. 
+
+### IMPORTANT: Generate fstab using ``` -L ``` for "labels".
+``` genfstab -L /mnt >> /mnt/etc/fstab ```
+Check the resulting /mnt/etc/fstab file, and edit it in case of errors. Refer to the install guide if in doubt
+
+### Change root into the installed system
+
+``` arch-chroot /mnt ```
+
+You're now working from the actual install.
+
+### Timezone, keymap and hostname
+You'll set the the time zone to Copenhagen.
+
+``` ln -sf /usr/share/zoneinfo/Europe/Copenhagen /etc/localtime ```
+
+... And generate ``` /etc/adjtime ``` ...
+
+``` hwclock --systohc ```
+
+Note: Check the install guide if any issues arise with the system clock.
+
+Edit ``` /etc/locale.gen ``` and uncomment ``` en_DK.UTF-8 UTF-8 ``` and other needed UTF-8 locales. Generate the locales by running: 
+
+``` locale-gen ```
+
+Set your console keyboard layout
+
+``` vim /etc/vconsole.conf ``` > ``` KEYMAP=thekeymapyounotedearlier ```
+
+Set the hostname
+``` /etc/hostname ``` > ``` host ```
+
+### IMPORTANT: Configuring mkinitcpio
 You'll be using the default option found here: [LVM on LUKS guide](https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS)
+
+``` vim /etc/mkinitcpio.conf ``` 
+
+Find the HOOKS section and update it like so:
+
 ``` HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block encrypt lvm2 filesystems fsck) ```
+
+Then ...
+``` mkinitcpio -P ```
+
+### Root password
+Set your root password with the ``` passwd ``` command.
+
+Be sure to also remember this one.
+
+### IMPORTANT: Install your boot loader
+For this install you will be using [systemd-boot](https://wiki.archlinux.org/title/Systemd-boot).
+
+Follow the instructions in the link.
+
+### Reboot and start installing packages
+Exit chroot with ``` exit ```, then ``` reboot ```.
+
+When you've succesfully rebooted the system, you're probably itching to get started with a desktop environment and some other general purpose programs.
+
+Please take a break. Right now. 
+
+When you've been away from the PC for a bit, go ahead and read the [General recommendations page](https://wiki.archlinux.org/title/General_recommendations).
