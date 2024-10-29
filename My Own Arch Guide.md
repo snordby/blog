@@ -46,9 +46,10 @@ Remember to double-check block devices often: ``` lsblk ```
 
 Use *fdisk* to create a partition table: ``` fdisk /dev/nameofdisk ```
 
-You want three (3) partitions: /boot, swap and a large partition for logical volumes.
+You want three (2) partitions: /boot, swap and a large partition for logical volumes.
 
-You will be using one (1) volume group containing two (2) logical volumes. It should look like this:
+You will be using one (1) volume group containing three (3) logical volumes. It should look like this:
 
-![PARTITION drawio](https://github.com/user-attachments/assets/11e53c82-11b6-44f5-99a3-c8c1c931ea71)
+![gpt drawio](https://github.com/user-attachments/assets/0380ec96-1456-4037-86e8-b5e3afca5760)
+
 
