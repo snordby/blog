@@ -25,13 +25,13 @@ Hit **12** on startup. Select the USB device to start.
 ### Important things to do first
 Open the [official installation guide](https://wiki.archlinux.org/title/Installation_guide) and follow along.
 
-Find your keyboard layout with the command: 
+Find your keyboard layout name: 
 
 ```
 localectl list-keymaps 
 ```
 
-Then load the proper layout: 
+Then, load the proper layout: 
 
 ``` 
 loadkeys [layout_name]
@@ -39,7 +39,7 @@ loadkeys [layout_name]
 
 Make a note of the chosen keymap for later use.
 
-Connect to Wifi with *iwctl*:
+Connect to Wifi with ``` iwctl ```:
 ```
 iwctl
 station wlan0 scan
@@ -47,7 +47,7 @@ station wlan0 connect [SSID]
 exit
 ```
 
-Test for connectivity with *ping*:
+Test for connectivity with ``` ping ```:
 
 ``` 
 ping [website]
@@ -67,7 +67,7 @@ Remember to double-check block devices often with ``` lsblk ```
 Use *fdisk* to create a partition table: 
 
 ```
-fdisk /dev/nameofdisk 
+fdisk /dev/[nameofdisk]
 ```
 
 You want three (2) partitions: /boot, swap and a large partition for logical volumes.
@@ -161,13 +161,13 @@ Set your console keyboard layout
 ``` 
 vim /etc/vconsole.conf
 ```
-Append: ```KEYMAP=thekeymapyounotedearlier ```
+Input: ```KEYMAP=thekeymapyounotedearlier ```
 
 Set the hostname
 ```
 vim /etc/hostname 
 ```
-Append: ``` host ```
+Input: ``` [host] ```
 
 ### IMPORTANT: Configuring mkinitcpio
 You'll be using the default option found here: [LVM on LUKS guide](https://wiki.archlinux.org/title/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS)
@@ -176,14 +176,14 @@ You'll be using the default option found here: [LVM on LUKS guide](https://wiki.
 vim /etc/mkinitcpio.conf
 ``` 
 
-Find the HOOKS section and update it like so:
+Input: ``` HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block encrypt lvm2 filesystems fsck) ```
 
-``` HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block encrypt lvm2 filesystems fsck) ```
-
-Then ...
+Then generate mkinitcpio
 ``` 
 mkinitcpio -P
 ```
+
+Errors should be listed in output.
 
 ### Root password
 Set your root password with 
@@ -199,11 +199,11 @@ For this install you will be using [systemd-boot](https://wiki.archlinux.org/tit
 Follow the instructions in the link.
 
 ### Reboot and verify
-Exit chroot with 
+Exit chroot: 
 ```
 exit 
 ```
-then 
+And you're done!
 ``` 
 reboot
 ```
