@@ -70,9 +70,11 @@ Use *fdisk* to create a partition table:
 fdisk /dev/[nameofdisk]
 ```
 
-You want three (2) partitions: /boot, swap and a large partition for logical volumes.
+Hit ``` m ``` to list commands.
 
-You will be using one (1) volume group containing three (3) logical volumes. It should look like this:
+You want two (2) partitions: /boot and a large storage partition for swap and logical volumes.
+
+The storage partition will consist of one (1) volume group containing three (3) logical volumes. It should look like this:
 
 ![gpt drawio](https://github.com/user-attachments/assets/0380ec96-1456-4037-86e8-b5e3afca5760)
 
