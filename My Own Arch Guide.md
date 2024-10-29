@@ -142,7 +142,7 @@ For this install you will be using [systemd-boot](https://wiki.archlinux.org/tit
 
 Follow the instructions in the link.
 
-### Reboot and start installing packages
+### Reboot and verify
 Exit chroot with ``` exit ```, then ``` reboot ```.
 
 When you've succesfully rebooted the system, you're probably itching to get started with a desktop environment and some other general purpose programs.
