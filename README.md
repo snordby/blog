@@ -5,7 +5,7 @@ Starting October 26th 2024 I will be sharing how and why I am taking steps towar
 
 Currently I possess the following:
 - An unused degree in journalism
-- A dead-end customer service job
+- A not-so-challenging customer service job
 - Pretty good communication skills
 - Some acquaintance with technology used by developers
 - Motivation to making a change
