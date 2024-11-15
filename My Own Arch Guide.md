@@ -15,6 +15,18 @@ This is a reference document for my own use, made public for easy accessibility.
 
 The Arch Wiki is all you actually need to learn how to install and configure Arch Linux.
 
+## 0. The ultra-simple list of steps to complete
+1. Boot from USB, load keymap, connect to WiFi, synchronize clock
+2. Partition disk(s) using fdisk
+3. Use pacstrap to install base, Linux and some necessary packages. Then enable a network service
+4. Generate fstab << fstab informs the operating system about the structure of the file system
+5. chroot into the installed system and configure time, locale, vconf and host name
+6. Review mkinitcpio and generate mkinitcpio << the HOOKS section defines what will be loaded on boot
+7. Set a root password
+8. Create a user, set a password and add the user to sudoers (the wheel group)
+9. Install a boot loader << use systemd boot
+10. Reboot
+
 ## 1. Booting into the installation image
 The IdeaPad 5 Pro boot menu can be accessed with **F12**.
 
