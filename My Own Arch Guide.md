@@ -4,8 +4,7 @@ These are my notes on installing Arch Linux on a [Lenovo IdeaPad 5 Pro 16ARH7](h
 The document will serve as a roadmap for the planned install with added notes explaining issues and solutions. Briefly, the plan is as follows:
 - I will be taking notes as I go along. I will not neglect taking notes.
 - I will only be using half the SSD capacity for the Arch partition table, as I plan to dual boot with Windows.
-- I will use a simple split of *boot | swap | root | home*. Root & home will have LVM encryption
-- The display manager will most likely be LightDM. XFCE will definitely be the desktop environment.
+- I will use a simple split of *boot | swap | root | home*. Root, swap & home will be contained inside an LVM encryption
 - I will probably use NetworkManager to get started.
 
 ## Disclaimer
