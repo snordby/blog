@@ -11,7 +11,9 @@ The document will serve as a roadmap for the planned install with added notes ex
 ## Disclaimer
 This is not a guide or tutorial on how to install Arch. Do not refer to this document for advice or guidance on how to install Arch or how to troubleshoot your Arch installation process.
 
-This is a reference document for my own use, made public for easy accessibility. Any benefit you might derive is completely incidental. Any problems derived from following these steps are to be blamed on you and you alone.
+This is a reference document for my own use, made public for easy accessibility. This document probably contains significant errors and is likely to be outdated. Any benefit you might derive is completely incidental. Any problems derived from following these steps are to be blamed on you and you alone.
+
+The Arch Wiki is all you actually need to learn how to install and configure Arch Linux.
 
 ## 1. Booting into the installation image
 The IdeaPad 5 Pro boot menu can be accessed with **F12**.
@@ -39,7 +41,7 @@ loadkeys [layout_name]
 
 Make a note of the chosen keymap for later use.
 
-Connect to Wifi with ``` iwctl ```:
+Connect to WiFi with ``` iwctl ```:
 ```
 iwctl
 station wlan0 scan
